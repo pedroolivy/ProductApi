@@ -4,6 +4,8 @@
     {
         public decimal Value { get; private set; }
 
+        private Price() { }
+
         private Price(decimal value)
         {
             Value = value;

@@ -10,6 +10,8 @@ namespace ProductApi.Domain.Entities
         public ProductType Type { get; private set; }
         public Price Price { get; private set; }
 
+        private Product() { }
+
         public Product(string name, ProductType type, Price price)
         {
             ValidateName(name);
