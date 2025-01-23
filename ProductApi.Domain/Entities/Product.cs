@@ -15,6 +15,7 @@ namespace ProductApi.Domain.Entities
         public Product(string name, ProductType type, Price price)
         {
             ValidateName(name);
+            ValidateType(type);
 
             Name = name;
             Type = type;
@@ -24,6 +25,7 @@ namespace ProductApi.Domain.Entities
         public void Update(string name, ProductType type, Price price)
         {
             ValidateName(name);
+            ValidateType(type);
 
             Name = name;
             Type = type;
@@ -34,6 +36,12 @@ namespace ProductApi.Domain.Entities
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("O nome do produto é necessário");
+        }
+
+        private static void ValidateType(ProductType type)
+        {
+            if (!Enum.IsDefined(typeof(ProductType), type))
+                throw new ArgumentException("Tipo de produto inválido");
         }
     }
 }

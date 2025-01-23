@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProductApi.Domain.Entities;
+﻿using ProductApi.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProductApi.Infrastructure.Database
 {

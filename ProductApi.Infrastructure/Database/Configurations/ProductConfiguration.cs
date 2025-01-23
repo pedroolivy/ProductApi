@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using ProductApi.Domain.Enums;
 using ProductApi.Domain.Entities;
-using ProductApi.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ProductApi.Infrastructure.Database.Configurations
 {
