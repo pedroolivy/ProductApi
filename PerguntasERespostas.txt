@@ -1,0 +1,29 @@
+Quais princípios SOLID foram aplicados? E por que eles foram escolhidos?
+Responsabilidade Única (SRP):
+
+A arquitetura foi estruturada de forma simples e funcional, priorizando organização e clareza.
+As entidades do domínio, como Product e Price, foram projetadas para gerenciar exclusivamente as regras de negócio e validações essenciais.
+Isso ajuda a evitar acoplamento entre responsabilidades, tornando o código mais fácil de entender, manter e expandir.
+Inversão de Dependência (DIP):
+
+As operações relacionadas ao banco de dados foram abstraídas por meio de interfaces (ex.: IProductRepository), o que proporciona flexibilidade e simplifica os testes.
+Além disso, os serviços também utilizam interfaces, garantindo maior modularidade.
+Por que isso foi usado?
+
+Para garantir que a aplicação dependa de abstrações em vez de implementações concretas, o que facilita trocas ou melhorias futuras (ex.: mudanças no banco de dados ou na lógica de serviço) sem grandes impactos.
+Dado um cenário que exige alta performance, quais seriam 2 possíveis melhorias na API? Explique como você implementaria essas melhorias.
+Paginação em Consultas de Listagem:
+
+Problema: Atualmente, o método GetAll retorna todos os produtos, o que pode ser ineficiente ao lidar com grandes volumes de dados.
+Solução:
+Implementar paginação como padrão para consultas de listagem, criando um método como GetAllByPage.
+Ajustar o cliente para consumir dados de forma paginada, solicitando apenas as páginas necessárias.
+Benefício: Reduz consumo de memória e tráfego de rede, melhorando a experiência do usuário.
+Busca por Lista de IDs (GetByList):
+
+Problema: Em situações em que vários itens precisam ser carregados simultaneamente, múltiplas consultas individuais são ineficientes.
+Solução:
+Criar um método GetByList que recebe uma lista de IDs e retorna os itens correspondentes em uma única consulta SQL (WHERE Id IN (...)).
+Benefício: Reduz o número de interações com o banco de dados, melhorando significativamente a performance.
+Sobre as melhorias mencionadas...
+Eu já implementei essas duas alterações! Além disso, tomei a liberdade de adicionar outros métodos que podem ser úteis dependendo do contexto do projeto.
