@@ -16,12 +16,25 @@ namespace ProductApi.WebAPI.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
                 return Ok(await _productService.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                return Ok(await _productService.GetAll());
             }
             catch (Exception ex)
             {

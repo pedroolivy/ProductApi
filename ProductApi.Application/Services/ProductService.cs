@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using AutoMapper;
-using ProductApi.Domain.Interfaces;
-using ProductApi.Application.Interfaces;
 using ProductApi.Application.Dtos;
-using ProductApi.Application.Products.Commands;
+using ProductApi.Application.Interfaces;
 using ProductApi.Application.Products.Queries;
+using ProductApi.Application.Products.Commands;
 
 namespace ProductApi.Application.Services
 {
@@ -12,16 +11,13 @@ namespace ProductApi.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
-        private readonly IProductRepository _productRepository;
 
         public ProductService(
             IMapper mapper, 
-            IMediator mediator, 
-            IProductRepository productRepository)
+            IMediator mediator)
         {
             _mapper = mapper;
             _mediator = mediator;
-            _productRepository = productRepository; 
         }
 
         public async Task<ProductDto> GetById(int id)
@@ -47,9 +43,10 @@ namespace ProductApi.Application.Services
             await _mediator.Send(new DeleteProductCommand { Id = id });
         }
 
-        public Task<IEnumerable<ProductDto>> GetAll()
+        public async Task<IEnumerable<ProductDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var products = await _mediator.Send(new GetAllProductsQuery());
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
         public Task<IEnumerable<ProductDto>> GetAllByPage(int pageNumber, int pageSize)
