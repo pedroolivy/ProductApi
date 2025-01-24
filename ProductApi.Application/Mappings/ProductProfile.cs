@@ -9,13 +9,14 @@ namespace ProductApi.Application.Mappings
     {
         public ProductProfile() 
         {
-            //Aqui converte dto em command 
             CreateMap<ProductDto, CreateProductCommand>();
+            CreateMap<ProductDto, UpdateProductCommand>();
 
-            //Aqui faz o inverso 
             CreateMap<Product, ProductDto>()
-              .ForMember(dest => dest.Type, opt => opt.MapFrom(src => (int)src.Type))
-              .ReverseMap();
+               .ForMember(dest => dest.Type, opt => opt.MapFrom(src => (int)src.Type)) 
+               .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price.Value)) 
+               .ReverseMap()
+               .ForPath(dest => dest.Price.Value, opt => opt.MapFrom(src => src.Price)); 
         }
     }
 }

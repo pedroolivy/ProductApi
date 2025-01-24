@@ -24,9 +24,6 @@ namespace ProductApi.Application.Products.Handlers
                 Price.Create(request.Price)
             );
 
-            if (product == null)
-                throw new ApplicationException("Erro ao criar o produto");
-
             await _productRepository.Add(product);
             return product.Id;
         }

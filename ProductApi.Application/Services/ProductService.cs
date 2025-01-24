@@ -4,6 +4,7 @@ using ProductApi.Domain.Interfaces;
 using ProductApi.Application.Interfaces;
 using ProductApi.Application.Dtos;
 using ProductApi.Application.Products.Commands;
+using ProductApi.Application.Products.Queries;
 
 namespace ProductApi.Application.Services
 {
@@ -16,16 +17,17 @@ namespace ProductApi.Application.Services
         public ProductService(
             IMapper mapper, 
             IMediator mediator, 
-            IProductRepository rroductRepository)
+            IProductRepository productRepository)
         {
             _mapper = mapper;
             _mediator = mediator;
-            _productRepository = rroductRepository;
+            _productRepository = productRepository; 
         }
 
-        public Task<ProductDto> GetById(int id)
+        public async Task<ProductDto> GetById(int id)
         {
-            throw new NotImplementedException();
+            var product =  await _mediator.Send(new GetProductByIdQuery { Id = id});
+            return _mapper.Map<ProductDto>(product);
         }
 
         public async Task<int> Create(ProductDto productDto)
@@ -34,14 +36,15 @@ namespace ProductApi.Application.Services
             return await _mediator.Send(command);
         }
 
-        public Task Update(ProductDto productDto)
+        public async Task Update(ProductDto productDto)
         {
-            throw new NotImplementedException();
+            var command = _mapper.Map<UpdateProductCommand>(productDto);
+            await _mediator.Send(command);
         }
 
-        public Task Delete(ProductDto productDto)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            await _mediator.Send(new DeleteProductCommand { Id = id });
         }
 
         public Task<IEnumerable<ProductDto>> GetAll()

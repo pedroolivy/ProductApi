@@ -20,7 +20,7 @@
         private static void Validate(decimal value)
         {
             if (value <= 0)
-                throw new ArgumentException("O preço deve ser maior que zero");
+                throw new ArgumentNullException("O preço deve ser maior que zero");
         }
     }
 }

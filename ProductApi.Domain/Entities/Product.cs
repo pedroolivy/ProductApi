@@ -35,13 +35,13 @@ namespace ProductApi.Domain.Entities
         private static void ValidateName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("O nome do produto é necessário");
+                throw new ArgumentNullException("O nome do produto é necessário");
         }
 
         private static void ValidateType(ProductType type)
         {
             if (!Enum.IsDefined(typeof(ProductType), type))
-                throw new ArgumentException("Tipo de produto inválido");
+                throw new ArgumentNullException("Tipo de produto inválido");
         }
     }
 }

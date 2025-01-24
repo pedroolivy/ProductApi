@@ -6,7 +6,7 @@ namespace ProductApi.Application.Interfaces
     {
         Task<int> Create(ProductDto productDto);
         Task Update(ProductDto productDto);
-        Task Delete(ProductDto productDto);
+        Task Delete(int id);
         Task<ProductDto> GetById(int id);
         Task<IEnumerable<ProductDto>> GetAll();
         Task AddAll(IEnumerable<ProductDto> products);

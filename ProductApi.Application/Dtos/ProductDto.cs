@@ -5,6 +5,8 @@ namespace ProductApi.Application.Dtos
 {
     public  class ProductDto
     {
+        public int? Id { get; set; }
+
         [Required(ErrorMessage = "O nome é obrigatório")]
         [MinLength(5)]
         [MaxLength(200)]
