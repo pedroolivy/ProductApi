@@ -73,7 +73,7 @@ namespace ProductApi.Infrastructure.Repositories
             return result.Select(r => (r.Type, r.TotalQuantity, r.AveragePrice));
         }
 
-        //Aqui se encontra métodos que poderiam ser utilizados futuramente
+        //Aqui se encontra métodos que poderiam ser utilizados futuramente...
         public async Task AddAll(IEnumerable<Product> products)
         {
             const int batchSize = 1000;
