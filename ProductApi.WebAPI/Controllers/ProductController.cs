@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductApi.Application.Dtos;
 using ProductApi.Application.Interfaces;
 
@@ -15,6 +16,7 @@ namespace ProductApi.WebAPI.Controllers
             _productService = productService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -28,6 +30,7 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -41,6 +44,7 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("paged")]
         public async Task<IActionResult> GetAllByPage([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
@@ -55,6 +59,7 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("dashboard")]
         public async Task<IActionResult> GetDashboard()
         {
@@ -69,6 +74,7 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody]ProductDto productDto)
         {
@@ -82,6 +88,7 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] ProductDto productDto)
         {
@@ -96,6 +103,7 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Delete([FromQuery] int id)
         {
