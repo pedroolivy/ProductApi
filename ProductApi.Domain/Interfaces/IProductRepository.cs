@@ -14,5 +14,6 @@ namespace ProductApi.Domain.Interfaces
         Task RemoveAll(IEnumerable<Product> products);
         Task UpdateAll(IEnumerable<Product> products);
         Task<IEnumerable<Product>> GetAllByPage(int pageNumber, int pageSize);
+        Task<IEnumerable<(string Type, int TotalQuantity, decimal AveragePrice)>> GetDashboardData();
     }
 }

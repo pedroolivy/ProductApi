@@ -15,6 +15,18 @@ namespace ProductApi.WebAPI.Controllers
             _productService = productService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                return Ok(await _productService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
@@ -29,12 +41,27 @@ namespace ProductApi.WebAPI.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("paged")]
+        public async Task<IActionResult> GetAllByPage([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
             try
             {
-                return Ok(await _productService.GetAll());
+                var products = await _productService.GetAllByPage(pageNumber, pageSize);
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("dashboard")]
+        public async Task<IActionResult> GetDashboard()
+        {
+            try
+            {
+                var result = await _productService.GetDashboard();
+                return Ok(result);
             }
             catch (Exception ex)
             {

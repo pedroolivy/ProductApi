@@ -49,24 +49,20 @@ namespace ProductApi.Application.Services
             return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
-        public Task<IEnumerable<ProductDto>> GetAllByPage(int pageNumber, int pageSize)
+        public async Task<IEnumerable<ProductDto>> GetAllByPage(int pageNumber, int pageSize)
         {
-            throw new NotImplementedException();
+            var products = await _mediator.Send(new GetProductsByPageQuery
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            });
+
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
-        public Task AddAll(IEnumerable<ProductDto> products)
+        public async Task<IEnumerable<DashboardDto>> GetDashboard()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAll(IEnumerable<ProductDto> products)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveAll(IEnumerable<ProductDto> products)
-        {
-            throw new NotImplementedException();
+            return await _mediator.Send(new DashboardQuery());
         }
     }
 }

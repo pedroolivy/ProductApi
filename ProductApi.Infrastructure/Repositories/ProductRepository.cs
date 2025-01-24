@@ -58,6 +58,22 @@ namespace ProductApi.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<(string Type, int TotalQuantity, decimal AveragePrice)>> GetDashboardData()
+        {
+            var result = await _context.Products
+                .GroupBy(p => p.Type)
+                .Select(g => new
+                {
+                    Type = g.Key.ToString(), 
+                    TotalQuantity = g.Count(),
+                    AveragePrice = g.Average(p => p.Price.Value) 
+                })
+                .ToListAsync();
+
+            return result.Select(r => (r.Type, r.TotalQuantity, r.AveragePrice));
+        }
+
+        //Aqui se encontra métodos que poderiam ser utilizados futuramente
         public async Task AddAll(IEnumerable<Product> products)
         {
             const int batchSize = 1000;
