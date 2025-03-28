@@ -10,7 +10,7 @@ using ProductApi.WebAPI.Authentication;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-const string stringConnetion = "ConnectionStrings__DefaultConnection";
+const string stringConnetion = "DefaultConnection";
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
