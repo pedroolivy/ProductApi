@@ -2,7 +2,7 @@ ProductApi
 
 Uma API RESTful desenvolvida em .NET utilizando os princípios da Clean Architecture e DDD, combinados com CQRS, Value Objects, autenticação básica e mapeamento com AutoMapper. Toda a aplicação foi publicada na Railway, com banco de dados PostgreSQL rodando no mesmo ambiente, em um Monolito Modular.
 
-🎯 Este projeto foi pensado para demonstrar habilidades profissionais em arquitetura moderna, boas práticas de organização de código, deploy e integração com banco na nuvem. Ideal para avaliação técnica de recrutadores.
+🎯 Este projeto foi pensado para demonstrar habilidades profissionais em arquitetura moderna, boas práticas de organização de código, deploy e integração com banco na nuvem.
 
 ⚙️ Tecnologias Utilizadas
 
