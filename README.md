@@ -98,12 +98,12 @@ $ dotnet run --project ProductApi.WebAPI
 
 ✔️ Produto real persistido e visualizado diretamente no painel de dados da Railway
 
-📸 Capturas (Railway)
+## 🌐 Acesse a API em Produção
 
-API e Banco no mesmo ambiente
+A API está publicada e disponível publicamente para consulta:
 
-Deploy automatizado via GitHub Actions
+🔗 **[https://productapi-production-9905.up.railway.app](https://productapi-production-9905.up.railway.app/swagger)**
 
-Dados reais persistidos no PostgreSQL
+> ⚠️ Nota: A API roda no plano gratuito do Railway. Se estiver fora do ar, pode ter atingido o limite mensal — volte a tentar mais tarde!
 
 Desenvolvido com foco em aprendizado avançado, publicação de API na nuvem e domínio de arquitetura limpa no ecossistema .NET.
