@@ -70,4 +70,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication(); 
 app.UseAuthorization();
 app.MapControllers();
+
+//adicionado para funcionar no Railway
+var port = Environment.GetEnvironmentVariable("PORT") ?? "3000";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 app.Run();
