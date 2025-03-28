@@ -74,5 +74,12 @@ app.MapControllers();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5238";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
+// Aplica as migrations automaticamente no startup (ambiente de produção)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
+    db.Database.Migrate();
+}
+
 
 app.Run();
