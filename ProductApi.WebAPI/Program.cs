@@ -71,11 +71,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-// Funciona local e Railway
-if (!app.Environment.IsDevelopment())
-{
-    var port = Environment.GetEnvironmentVariable("PORT") ?? "3000";
-    app.Urls.Add($"http://0.0.0.0:{port}");
-}
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5238";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 
 app.Run();
