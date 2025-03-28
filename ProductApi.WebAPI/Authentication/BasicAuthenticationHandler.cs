@@ -37,7 +37,12 @@ namespace ProductApi.WebAPI.Authentication
                 var username = credentials[0];
                 var password = credentials[1];
 
-                if (username != "admin" || password != "password")
+                var config = Context.RequestServices.GetRequiredService<IConfiguration>();
+
+                var expectedUsername = config["Auth:Username"];
+                var expectedPassword = config["Auth:Password"];
+
+                if (username != expectedUsername || password != expectedPassword)
                     return Task.FromResult(AuthenticateResult.Fail("Usuário ou senha inválidos"));
 
                 var claims = new[] {
