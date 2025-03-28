@@ -10,12 +10,10 @@ using ProductApi.WebAPI.Authentication;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-const string stringConnetion = "DefaultConnection";
+const string stringConnetion = "ConnectionStrings__DefaultConnection";
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-
-//Configuração para autenticação: 
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
@@ -41,25 +39,15 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-//Configuração para o autoMapper:
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ProductApi.Application.Products.Commands.CreateProductCommand).Assembly));
 builder.Services.AddAutoMapper(typeof(ProductProfile));
-
-//Injeções para o serviço e o repositório
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
-//configuração para conexão com banco
 builder.Services.AddDbContext<ProductDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString(stringConnetion)));
-
-//Configurações para a autenticação
-builder.Services.AddAuthentication("BasicAuthentication")
-    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-
+builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -71,15 +59,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5238";
-app.Urls.Add($"http://0.0.0.0:{port}");
-
-// Aplica as migrations automaticamente no startup (ambiente de produção)
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
     db.Database.Migrate();
 }
 
-
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5238";
+app.Urls.Add($"http://0.0.0.0:{port}");
 app.Run();
