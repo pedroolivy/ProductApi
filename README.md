@@ -61,4 +61,4 @@ Durante a publicação na Railway, foram realizados ajustes:
 
 ⚠️ O `appsettings.json` local é ignorado em produção. Toda a configuração sensível está via **variáveis de ambiente**.
 
-https://productapi-production-9905.up.railway.app/swagger/index.html
+
