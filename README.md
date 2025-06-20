@@ -58,7 +58,3 @@ Durante a publicação na Railway, foram realizados ajustes:
 | `ConnectionStrings__DefaultConnection` | Extraída da `DATABASE_URL` da Railway         |
 | `Auth__Username`                | Usuário da autenticação básica                    |
 | `Auth__Password`                | Senha da autenticação básica                      |
-
-⚠️ O `appsettings.json` local é ignorado em produção. Toda a configuração sensível está via **variáveis de ambiente**.
-
-
